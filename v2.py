@@ -4,7 +4,7 @@ from PIL import ImageTk, Image
 import tkinter as tk
 
 t = time()
-s = 0
+s = 0.0
 n = 0
 
 
@@ -24,7 +24,7 @@ def update_frame():
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         # Масштабирование изображения (при необходимости)
-        img = cv2.resize(img, (width, height))
+        # img = cv2.resize(img, (width, height))
 
         # Создание изображения Tkinter
         photo = Image.fromarray(img)
@@ -47,8 +47,8 @@ width, height = 2560//2, 1440//2
 
 # Открытие видеопотока от первой доступной веб-камеры (номер устройства 0)
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560//1)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440//1)
 if not cap.isOpened():
     print("Ошибка открытия веб-камеры.")
     exit()
