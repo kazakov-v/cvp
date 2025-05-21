@@ -7,7 +7,7 @@ def mouse_callback(event, x, y, flags, param):
         print(f'Left button clicked at ({x}, {y})')
     elif event == cv2.EVENT_RBUTTONDOWN:
         print(f'Right button clicked at ({x}, {y})')
-    elif event == cv2.EVENT_MOUSEMOVE:
+    elif event == cv2.EVENT_MOUSEMOVE and flags & cv2.EVENT_FLAG_LBUTTON:
         print(f'Mouse moved to ({x}, {y})')
 
 
@@ -16,7 +16,7 @@ cv2.namedWindow(window_name)
 cv2.setMouseCallback(window_name, mouse_callback)
 
 
-a = np.zeros([1080, 1920, 3])
+a = np.zeros([1080//2, 1920//2, 3])
 while True:
     cv2.imshow(window_name, a)
     key = cv2.waitKey(1)
