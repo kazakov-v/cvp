@@ -2,10 +2,12 @@ from time import time
 import cv2
 
 t = time()
+s = 0
+n = 0
 # Открываем камеру с индексом 0 (первая доступная камера)
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440)
 
 if not cap.isOpened():
     print("Ошибка! Камера не доступна.")
@@ -20,8 +22,12 @@ else:
         # Отображаем окно с изображением
         cv2.imshow('Web Camera', frame)
 
-        print(time() - t)
+        dt = time() - t
+        s += dt
+        n += 1
+        print(s / n)
         t = time()
+        # print(frame.shape)
 
         # Остановка цикла по нажатию клавиши 'q'
         if cv2.waitKey(1) & 0xFF == ord('q'):

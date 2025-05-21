@@ -4,14 +4,19 @@ from PIL import ImageTk, Image
 import tkinter as tk
 
 t = time()
+s = 0
+n = 0
 
 
 # Функция обновления кадра с вебкамеры
 def update_frame():
     # Захват нового кадра с вебкамеры
     ret, frame = cap.read()
-    global t
-    print(time() - t)
+    global t, s, n
+    dt = time() - t
+    s += dt
+    n += 1
+    print(s / n)
     t = time()
 
     if ret:
@@ -19,7 +24,7 @@ def update_frame():
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         # Масштабирование изображения (при необходимости)
-        # img = cv2.resize(img, (width, height))
+        img = cv2.resize(img, (width, height))
 
         # Создание изображения Tkinter
         photo = Image.fromarray(img)
@@ -38,12 +43,12 @@ root = tk.Tk()
 root.title("Webcam Viewer")
 
 # Размеры окна
-width, height = 1920, 1080
+width, height = 2560//2, 1440//2
 
 # Открытие видеопотока от первой доступной веб-камеры (номер устройства 0)
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440)
 if not cap.isOpened():
     print("Ошибка открытия веб-камеры.")
     exit()
