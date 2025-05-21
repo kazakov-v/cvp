@@ -9,6 +9,7 @@ t = time()
 s = 0.0
 n = 0
 
+
 class CameraViewer(QWidget):
     def __init__(self):
         super().__init__()
@@ -26,7 +27,7 @@ class CameraViewer(QWidget):
         layout.addWidget(self.video_label)
         self.setLayout(layout)
         self.setWindowTitle("Камера")
-        self.resize(2560//2, 1440//2)
+        self.resize(int(2560/1.2), int(1440/1.2))
 
     def update_frame(self):
         ret, frame = cap.read()
