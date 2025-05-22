@@ -24,7 +24,7 @@ def update_frame():
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         # Масштабирование изображения (при необходимости)
-        # img = cv2.resize(img, (width, height))
+        img = cv2.resize(img, (width, height))
 
         # Создание изображения Tkinter
         photo = Image.fromarray(img)

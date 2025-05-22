@@ -27,7 +27,7 @@ class CameraViewer(QWidget):
         layout.addWidget(self.video_label)
         self.setLayout(layout)
         self.setWindowTitle("Камера")
-        self.resize(int(2560/1.2), int(1440/1.2))
+        self.resize(int(2560/2), int(1440/2))
 
     def update_frame(self):
         ret, frame = cap.read()
@@ -52,8 +52,8 @@ class CameraViewer(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     cap = cv2.VideoCapture(0)  # 0 означает первую камеру устройства
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560//1)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440//1)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560//2)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440//2)
 
     viewer = CameraViewer()
     viewer.show()

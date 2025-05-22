@@ -15,7 +15,7 @@ class GUI(tk.Tk):
     def show_frame(self):
         _, frame = self.vid_cap.read()
         print(frame.shape)
-        # frame = cv2.resize(frame, (696, 486))
+        frame = cv2.resize(frame, (2560//2, 1440//2))
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frame)
         self.latest_img = ImageTk.PhotoImage(image=img)
@@ -24,8 +24,8 @@ class GUI(tk.Tk):
 
     def start_video(self, path=None):
         self.vid_cap = cv2.VideoCapture(path)
-        self.vid_cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560//2)
-        self.vid_cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440//2)
+        self.vid_cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560//1)
+        self.vid_cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440//1)
 
         self.show_frame()
 
